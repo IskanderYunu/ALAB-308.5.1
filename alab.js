@@ -95,3 +95,49 @@ function change(){
     })
 }
 console.log(change());
+
+const sumOfAges = DATA.reduce((accumulator, currentValue) => accumulator + (+currentValue.age), 0);      
+//When using reduce() method on a object array, you must supply an initial value which is 0. 
+let avgAgeOfDATA = sumOfAges / DATA.length;
+
+console.log(`The sum of the ages of the object array is ${sumOfAges}`);
+console.log(`The Average of the ages of the object array is ${avgAgeOfDATA}`);
+
+console.log("");
+console.log("=============================Part#3=====================================");
+
+
+function incrementAge(object) {
+
+    for (let i = 0; i < object.length; i++) {
+
+        if ("age" in object[i]) {        // Checks if the age key exist in the object array.
+            object[i].age = (+object[i].age + 1).toString();
+        } else {
+            object[i].age = "0"                 //adds the age field with value of 0 to the array object if the age key does not exist.
+        }
+        object[i].update_at = new Date();       //adds the update_at field and sets the value to current date and time.
+
+    }
+
+    return object;
+
+}
+
+console.log(incrementAge(DATA));
+
+function copyIncrement(object){
+
+    const copyDATA = [...object];    //Creates the copy of the object array.
+
+    for (let i = 0; i < copyDATA.length; i++){
+            copyDATA[i].age = (+copyDATA[i].age + 1).toString();    //increments the age by one.
+            copyDATA[i].update_at.setTime(815788860000);            //Sets the date to Nov 8th 1995.
+        }
+
+    return copyDATA;
+}
+
+console.log("=======================COPY=============================");
+console.log(copyIncrement(DATA));
+
